@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Restaurant Summary | FoodCourt Hub</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="account.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="container">
+      <nav class="navbar">
+        <a href="index.html" class="logo">
+          <i class="fas fa-utensils"></i>
+          <span>FoodCourt Hub</span>
+        </a>
+        <div class="header-nav">
+          <a href="/restaurant.html" class="nav-link">
+            <i class="fas fa-arrow-left"></i> Back to Live Orders
+          </a>
+          <button class="qr-scan-btn" onclick="logout()">
+            <i class="fas fa-sign-out-alt"></i> Logout
+          </button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="page">
+    <!-- Page Header -->
+    <div class="dashboard-header">
+      <h1>Restaurant Summary</h1>
+      <p class="page-sub">Manager Control Panel<br>View analytics and order summaries for <strong>Small Cloud</strong>.</p>
+    </div>
+
+    <!-- Stats Cards -->
+    <div class="stats-container">
+      <div class="stat-card total">
+        <div class="stat-icon">
+          <i class="fas fa-receipt"></i>
+        </div>
+        <div class="stat-info">
+          <div class="stat-label">Total Orders</div>
+          <div class="stat-value" id="total-orders">0</div>
+        </div>
+      </div>
+      
+      <div class="stat-card status">
+        <div class="stat-icon">
+          <i class="fas fa-clock"></i>
+        </div>
+        <div class="stat-info">
+          <div class="stat-label">Active Status</div>
+          <div class="stat-value" id="active-status">0</div>
+        </div>
+      </div>
+      
+      <div class="stat-card profit">
+        <div class="stat-icon">
+          <i class="fas fa-dollar-sign"></i>
+        </div>
+        <div class="stat-info">
+          <div class="stat-label">Total Profit</div>
+          <div class="stat-value" id="total-profit">RM 0.00</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Orders Table Section -->
+    <div class="table-section">
+      <div class="table-header">
+        <h2>
+          <i class="fas fa-list"></i>
+          Recent Orders
+        </h2>
+        <button class="refresh-btn" onclick="refreshData()">
+          <i class="fas fa-sync-alt"></i> Refresh Data
+        </button>
+      </div>
+      
+      <div class="table-wrapper">
+        <table class="luxury-table">
+          <thead>
+            <tr>
+              <th>Order ID</th>
+              <th>Phone Number</th>
+              <th>Food</th>
+              <th>Price</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody id="orders-table-body">
+            <!-- Orders will be inserted here by JavaScript -->
+            <tr>
+              <td colspan="5" style="text-align: center; padding: 2rem; color: #888;">
+                Loading orders...
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <p>&copy; 2024 FoodCourt Hub. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="account.js"></script>
+  
+  <!-- Logout Function -->
+  <script>
+    function logout() {
+      if (confirm('Are you sure you want to logout?')) {
+        localStorage.removeItem('adminLoggedIn');
+        localStorage.removeItem('loggedInStore');
+        window.location.href = 'admin-login.html';
+      }
+    }
+  </script>
+
+  <!-- Order Details Modal -->
+<div id="order-modal-overlay" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.5); z-index:9999; align-items:center; justify-content:center;">
+    <div style="background:white; width:90%; max-width:500px; border-radius:16px; overflow:hidden; box-shadow:0 10px 40px rgba(0,0,0,0.2); max-height:90vh; overflow-y:auto;">
+        <!-- Modal Header -->
+        <div style="padding:20px; border-bottom:1px solid #eee; display:flex; justify-content:space-between; align-items:center;">
+            <div>
+                <h3 style="margin:0; color:var(--text-main);">Order <span id="modal-order-id"></span></h3>
+                <span id="modal-status" class="status-badge" style="font-size:0.8rem;"></span>
+            </div>
+            <button onclick="closeOrderModal()" style="background:none; border:none; font-size:24px; cursor:pointer; color:#999;">&times;</button>
+        </div>
+
+        <!-- Modal Body -->
+        <div style="padding:20px;">
+            <!-- Customer Info -->
+            <div style="background:#f9f9f9; padding:15px; border-radius:10px; margin-bottom:20px;">
+                <h4 style="margin:0 0 10px; color:var(--primary); font-size:0.9rem; text-transform:uppercase;">Customer Information</h4>
+                <p style="margin:5px 0; font-size:0.95rem;"><strong>Name:</strong> <span id="modal-cust-name"></span></p>
+                <p style="margin:5px 0; font-size:0.95rem;"><strong>Phone:</strong> <span id="modal-cust-phone"></span></p>
+                <p style="margin:5px 0; font-size:0.95rem;"><strong>Email:</strong> <span id="modal-cust-email"></span></p>
+                <p style="margin:5px 0; font-size:0.95rem;"><strong>Address:</strong> <span id="modal-cust-address"></span></p>
+            </div>
+
+            <!-- Items -->
+            <h4 style="margin:0 0 10px; color:var(--text-main);">Order Items</h4>
+            <div id="modal-items-list" style="margin-bottom:15px; border-bottom:1px dashed #ddd; padding-bottom:15px;">
+                <!-- Items injected by JS -->
+            </div>
+
+            <!-- Totals -->
+            <div style="font-size:0.95rem; line-height:1.8;">
+                <div style="display:flex; justify-content:space-between;">
+                    <span>Subtotal</span>
+                    <span id="modal-subtotal"></span>
+                </div>
+                <div style="display:flex; justify-content:space-between; color:var(--success);">
+                    <span>Discount</span>
+                    <span id="modal-discount"></span>
+                </div>
+                <div style="display:flex; justify-content:space-between;">
+                    <span>Delivery</span>
+                    <span id="modal-delivery"></span>
+                </div>
+                <div style="display:flex; justify-content:space-between;">
+                    <span>Tax</span>
+                    <span id="modal-tax"></span>
+                </div>
+                <div style="display:flex; justify-content:space-between; font-weight:bold; font-size:1.1rem; margin-top:10px; border-top:2px solid #eee; padding-top:10px;">
+                    <span>Total</span>
+                    <span id="modal-total" style="color:var(--primary);"></span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal Footer -->
+        <div style="padding:20px; background:#f9f9f9; display:flex; gap:10px; justify-content:flex-end;">
+            <button onclick="closeOrderModal()" style="padding:10px 20px; border:1px solid #ddd; background:white; border-radius:8px; cursor:pointer;">Close</button>
+            <button onclick="downloadReceipt()" style="padding:10px 20px; background:var(--primary); color:white; border:none; border-radius:8px; cursor:pointer; font-weight:600;">
+                <i class="fas fa-download"></i> Download Receipt
+            </button>
+        </div>
+    </div>
+</div>
+</body>
+</html>
