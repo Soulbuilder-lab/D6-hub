@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="smallcloud style.css">
+  <link rel="stylesheet" href="css/checkout.css">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="shortcut icon" href="images/logo.jpg">
+  <title>Restaurant | Small Cloud - Checkout</title>
+</head>
+<body class="checkout-page">
+
+  <div class="sidebar">
+        <div class="logo-area">
+            <img src="images/logo.jpg" alt="Logo"> 
+        </div>
+  </div>
+  
+  <div class="main">
+    <div class="main-navbar">
+      <ion-icon class="menu-toggle" name="menu-outline"></ion-icon>
+
+      <div class="profile">
+        <a href="javascript:history.back()" class="previous-btn" title="Go Back">
+          <ion-icon name="arrow-back-outline"></ion-icon>
+        </a>
+        
+        <a class="cart" href="cart.html">
+          <ion-icon name="cart-outline"></ion-icon>
+          <span class="cart-count" id="cart-count">0</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="checkout-container">
+      <div class="checkout-form-section">
+        <h3><ion-icon name="person-outline"></ion-icon> Payment Details</h3>
+        <form id="checkout-form">
+          <div class="form-group">
+            <label for="name">Full Name</label>
+            <input type="text" id="name" placeholder="Enter your full name" required>
+          </div>
+
+          <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" placeholder="e.g. 012-3456789" required>
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input 
+                type="email" 
+                id="email" 
+                name="email" 
+                placeholder="your.email@example.com" 
+                required
+                autocomplete="email"
+                pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+            >
+          </div>
+
+          <h3><ion-icon name="card-outline"></ion-icon> Payment Method</h3>
+          <div class="payment-options">
+            <label class="radio-label">
+              <input type="radio" name="payment" value="cash" checked>
+              <span>Cash on Delivery</span>
+            </label>
+          </div>
+
+          <button type="submit" class="confirm-btn">
+            <ion-icon name="checkmark-circle-outline"></ion-icon> Confirm Order
+          </button>
+        </form>
+      </div>
+
+      <div class="checkout-summary-section">
+        <div class="summary-card">
+          <h3>Order Summary</h3>
+          <div id="checkout-items"></div>
+          <div class="summary-totals">
+            <p>Subtotal <span id="checkout-subtotal">RM 0.00</span></p>
+            <p>Tax (6%) <span id="checkout-tax">RM 0.00</span></p>
+            <p class="grand-total">Total <span id="checkout-total">RM 0.00</span></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+  <script src="js/checkout.js"></script>
+</body>
+</html>

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FoodCourt Hub | Main Page</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+</head>
+<body>
+  <header class="header">
+    <a href="index.html" class="logo"><i class="fas fa-utensils"></i> FoodCourt Hub</a>
+    <nav class="header-nav">
+      <a href="index.html" class="nav-link active">Home</a>
+      <a href="notification.html" class="nav-link">Alerts</a>
+      <a href="payment-history.html" class="nav-link">History</a>
+    </nav>
+    <div style="display:flex; align-items:center; gap:8px;">
+      <span id="table-badge" style="display:none;"></span>
+      <button class="qr-scan-btn" id="scanBtn"><i class="fas fa-qrcode"></i> Scan Table</button>
+    </div>
+  </header>
+
+  <!-- QR Modal -->
+  <div id="qr-modal-overlay">
+    <div id="qr-modal">
+      <button class="qr-close-btn" onclick="closeQRModal()">✕</button>
+      <h3><i class="fas fa-qrcode" style="margin-right:8px; color:#40ABD7;"></i>Table Login</h3>
+      <p class="sub">Enter your table number to start ordering</p>
+      <div class="qr-input-row">
+        <input type="text" id="table-input" placeholder="e.g. 57, A3, B12" maxlength="10"
+               onkeydown="if(event.key==='Enter') generateTableQR()">
+        <button onclick="generateTableQR()">Show QR</button>
+      </div>
+      <div id="qr-canvas-wrapper">
+        <p style="color:#ccc; font-size:13px; padding:30px 0;">Enter a table number above</p>
+      </div>
+      <button class="qr-confirm-btn" id="confirm-table-btn" onclick="confirmTable()" disabled>
+        <i class="fas fa-check" style="margin-right:6px;"></i> Confirm & Enter Table
+      </button>
+    </div>
+  </div>
+
+  <section class="hero">
+    <div class="slideshow">
+      <div class="slide active" style="background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);"></div>
+      <div class="slide" style="background: linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%);"></div>
+      <div class="slide" style="background: linear-gradient(135deg, #d4fc79 0%, #96e6a1 100%);"></div>
+    </div>
+    <div class="slide-controls">
+      <span class="dot active" onclick="currentSlide(1)"></span>
+      <span class="dot" onclick="currentSlide(2)"></span>
+      <span class="dot" onclick="currentSlide(3)"></span>
+    </div>
+    <div class="hero-overlay">
+      <div class="hero-content">
+        <h1>Food Court</h1>
+        <p>Curated stalls. Unified ordering. Cash at counter.</p>
+        <div class="hero-stats">
+          <div class="stat-box"><span class="live-dot"></span> LIVE Prep Time: 12 mins</div>
+          <div class="stat-box"><i class="fas fa-chair"></i> Table: <span id="heroTable">--</span></div>
+        </div>
+        <div class="quick-reorder">
+          <h3>Quick Reorder (Last Meal)</h3>
+          <div class="reorder-items">
+            <button class="reorder-chip" data-item="Wonton Soup" data-price="12">Wonton Soup</button>
+            <button class="reorder-chip" data-item="Spicy Beef Lamian" data-price="18">Spicy Beef Lamian</button>
+            <button class="reorder-chip" data-item="Taro Milk Tea" data-price="6">Taro Milk Tea</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="container">
+    <aside class="sidebar">
+      <h2><i class="fas fa-list-ul"></i> Browse by Category</h2>
+      <div class="category-filter">
+        <button class="cat-btn active" data-category="all">All Stalls</button>
+        <button class="cat-btn" data-category="asian">Asian Cuisine</button>
+        <button class="cat-btn" data-category="burgers">Western Cuisine</button>
+        <button class="cat-btn" data-category="desserts">Desserts & Drinks</button>
+        <button class="cat-btn" data-category="healthy">Healthy Options</button>
+      </div>
+    </aside>
+    <main class="main">
+      <div class="stall-grid">
+        <div class="stall-card" data-category="asian">
+          <div class="stall-image"><i class="fas fa-bowl-rice"></i></div>
+          <div class="stall-content">
+            <div class="stall-header"><span class="stall-name">小云冰室</span><span class="stall-rating">★★★★★</span></div>
+            <div class="stall-cuisine">Asian Cuisine • 15-20 min</div>
+            <div class="stall-prep">Estimated Prep: 15-20 minutes</div>
+            <a href="Xiaoyun/smallcloud.html"><button class="view-menu">View Menu</button></a>
+          </div>
+        </div>
+        <div class="stall-card" data-category="burgers">
+          <div class="stall-image"><i class="fas fa-burger"></i></div>
+          <div class="stall-content">
+            <div class="stall-header"><span class="stall-name">The Golden Bowl 金饭碗</span><span class="stall-rating">★★★★★</span></div>
+            <div class="stall-cuisine">Western Cuisine • 10-15 min</div>
+            <div class="stall-prep">Estimated Prep: 10-15 minutes</div>
+            <a href="The Golden Bowl/thegoldenbowl.html"><button class="view-menu" data-stall="2">View Menu</button></a>
+          </div>
+        </div>
+        <div class="stall-card" data-category="asian">
+          <div class="stall-image"><i class="fas fa-fire-burner"></i></div>
+          <div class="stall-content">
+            <div class="stall-header"><span class="stall-name">Wok & Roll</span><span class="stall-rating">★★★★★</span></div>
+            <div class="stall-cuisine">Asian • 15-20 min</div>
+            <div class="stall-prep">Estimated Prep: 15-20 minutes</div>
+            <button class="view-menu" data-stall="3">View Menu</button>
+          </div>
+        </div>
+        <div class="stall-card" data-category="desserts">
+          <div class="stall-image"><i class="fas fa-ice-cream"></i></div>
+          <div class="stall-content">
+            <div class="stall-header"><span class="stall-name">The Boba Shop</span><span class="stall-rating">★★★★★</span></div>
+            <div class="stall-cuisine">Desserts • 5-10 min</div>
+            <div class="stall-prep">Estimated Prep: 5-10 minutes</div>
+            <button class="view-menu" data-stall="4">View Menu</button>
+          </div>
+        </div>
+        <div class="stall-card" data-category="healthy">
+          <div class="stall-image"><i class="fas fa-leaf"></i></div>
+          <div class="stall-content">
+            <div class="stall-header"><span class="stall-name">Green Bowl Co.</span><span class="stall-rating">★★★★☆</span></div>
+            <div class="stall-cuisine">Healthy • 10-15 min</div>
+            <div class="stall-prep">Estimated Prep: 10-15 minutes</div>
+            <button class="view-menu" data-stall="5">View Menu</button>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h4>FoodCourt Hub</h4>
+        <p>Unified dining experience. Scan, order, and pay cash at your favorite stalls.</p>
+        <div class="social-links">
+          <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="fb" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="ig" title="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" class="tw" title="X / Twitter"><i class="fab fa-x-twitter"></i></a>
+          <a href="https://wa.me/15550192834" target="_blank" rel="noopener noreferrer" class="wa" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+          <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" class="yt" title="YouTube"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <a href="index.html">Home</a>
+        <a href="notification.html">Live Alerts</a>
+        <a href="payment-history.html">Order History</a>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <p><i class="fas fa-envelope" style="margin-right:6px; color:#f4a261;"></i>
+          <a href="mailto:support@foodcourthub.com">support@foodcourthub.com</a></p>
+        <p><i class="fas fa-phone" style="margin-right:6px; color:#f4a261;"></i>
+          <a href="tel:+15550192834">+1 (555) 019-2834</a></p>
+        <p><i class="fas fa-clock" style="margin-right:6px; color:#f4a261;"></i>Open Daily: 10AM – 10PM</p>
+      </div>
+    </div>
+    <div class="footer-bottom">© 2024 FoodCourt Hub. All rights reserved.</div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

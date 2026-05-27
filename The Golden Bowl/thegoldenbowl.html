@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/thegoldenbowlstyle.css">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="shortcut icon" href="images/logo.jpg">
+  <title>Restaurant | The Golden Bowl</title>
+</head>
+<body>
+
+  <div class="sidebar">
+    <div class="logo-area">
+      <img src="images/logo.jpg" alt="Logo"> 
+    </div>
+    <div class="sidebar-menus">
+      <a href="/index.html"><ion-icon name="storefront-outline"></ion-icon>Home</a>
+      <a href="#"><ion-icon name="chatbubbles-outline"></ion-icon>Contact Us</a>
+    </div>
+
+    <div class="sidebar-logout">
+      <a href="/login/admin-login.html"><ion-icon name="log-in-outline"></ion-icon>Log In</a>
+    </div>
+  </div>
+
+  <div class="main">
+    <div class="main-navbar">
+      <ion-icon class="menu-toggle" name="menu-outline"></ion-icon>
+      <div class="search">
+        <input type="text" placeholder="What you want to eat?">
+        <button class="search-btn">Search</button>
+      </div>  
+
+      <div class="profile">
+        <a class="cart" href="thegoldenbowlcart.html">
+          <ion-icon name="cart-outline"></ion-icon>
+          <span class="cart-count" id="cart-count">0</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="main-highlights">
+      <div class="main-header">
+        <h2 class="main-title">Recommedation</h2>
+        <div class="main-arrow">
+          <ion-icon class="back" name="chevron-back-circle-outline"></ion-icon>
+          <ion-icon class="next" name="chevron-forward-circle-outline"></ion-icon>
+        </div>
+      </div>
+
+      <div id="recommedations" class="highlight-wrapper">
+        <div class="highlight-card">
+          <img class="highlight-img" src="images/chicken chop.jpg">
+          <div class="highlight-desc">
+            <h4>Chicken Chop</h4>
+            <p>RM11.90</p>
+          </div>
+        </div>
+
+        <div class="highlight-card">
+          <img class="highlight-img" src="images/chicken burger.jpg">
+          <div class="highlight-desc">
+            <h4>Chicken Burger</h4>
+            <p>RM6.90</p>
+          </div>
+        </div>
+
+        <div class="highlight-card">
+          <img class="highlight-img" src="images/hawaii pizza.jpg">
+          <div class="highlight-desc">
+            <h4>Hawaii Pizza</h4>
+            <p>RM12.90</p>
+          </div>
+        </div>
+
+        <div class="highlight-card">
+          <img class="highlight-img" src="images/chicken wing.jpg">
+          <div class="highlight-desc">
+            <h4>Chicken Wing</h4>
+            <p>RM8.90</p>
+          </div>
+        </div>
+
+        <div class="highlight-card">
+          <img class="highlight-img" src="images/spaghetti tomato.jpg">
+          <div class="highlight-desc">
+            <h4>Spaghetti Tomato</h4>
+            <p>RM10.90</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="main-menus">
+      <div class="main-filter">
+        <div>
+          <h2 class="main-title">Menu<br>Category</h2>
+          <div class="main-arrows">
+            <ion-icon class="back-menus" name="chevron-back-circle-outline"></ion-icon>
+            <ion-icon class="next-menus" name="chevron-forward-circle-outline"></ion-icon>
+          </div>
+        </div>
+
+        <div class="filter-wrapper">
+           <div class="filter-card" onclick="filterMenu('all')">
+              <div class="filter-icon"><ion-icon name="restaurant-outline"></ion-icon></div>
+              <span>All Menu</span>
+           </div>
+           <div class="filter-card" onclick="filterMenu('food')">
+              <div class="filter-icon"><ion-icon name="fast-food-outline"></ion-icon></div>
+              <span>Food</span>
+           </div>
+           <div class="filter-card" onclick="filterMenu('drink')">
+              <div class="filter-icon"><ion-icon name="cafe-outline"></ion-icon></div>
+              <span>Drink</span>
+            </div>
+            <div class="filter-card" onclick="filterMenu('dessert')">
+              <div class="filter-icon"><ion-icon name="ice-cream-outline"></ion-icon></div>
+              <span>Dessert</span>
+            </div>
+         </div>
+      </div>
+      <hr class="divider">
+
+      <div id="menus" class="main-detail">
+        <h2 class="main-title">Choose Order</h2>
+        <div class="detail-wrapper">
+
+          <div class="detail-card" data-category="food">
+            <img class="detail-img" src="images/chicken burger.jpg">
+            <div class="detail-desc">
+              <div class="detail-name">
+              <h4>Chicken Burger</h4>
+              <p class="detail-sub">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+              <p class="price">RM6.90</p>
+              <button class="add-to-cart-btn" onclick="addToCart('Chicken Burger', 6.90)">Add To Cart</button>
+            </div>
+              <ion-icon class="detail-favorites" name="bookmark-outline"></ion-icon>
+            </div>
+          </div>   
+
+          <div class="detail-card" data-category="food">
+            <img class="detail-img" src="images/beef burger.jpg">
+            <div class="detail-desc">
+              <div class="detail-name">
+              <h4>Beef Burger</h4>
+              <p class="detail-sub">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+              <p class="price">RM7.90</p>
+              <button class="add-to-cart-btn" onclick="addToCart('Beef Burger', 7.90)">Add To Cart</button>
+            </div>
+              <ion-icon class="detail-favorites" name="bookmark-outline"></ion-icon>
+            </div>
+          </div>
+
+          <div class="detail-card" data-category="food">
+            <img class="detail-img" src="images/chicken chop.jpg">
+            <div class="detail-desc">
+              <div class="detail-name">
+              <h4>Chicken Chop</h4>
+              <p class="detail-sub">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+              <p class="price">RM11.90</p>
+              <button class="add-to-cart-btn" onclick="addToCart('Chicken Chop', 11.90)">Add To Cart</button>
+            </div>
+              <ion-icon class="detail-favorites" name="bookmark-outline"></ion-icon>
+            </div>
+          </div>
+
+          <div class="detail-card" data-category="food">
+            <img class="detail-img" src="images/spaghetti tomato.jpg">
+            <div class="detail-desc">
+              <div class="detail-name">
+              <h4>Spaghetti Tomata</h4>
+              <p class="detail-sub">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+              <p class="price">RM1.90</p>
+              <button class="add-to-cart-btn" onclick="addToCart('Spaghetti Tomato', 10.90)">Add To Cart</button>
+            </div>
+              <ion-icon class="detail-favorites" name="bookmark-outline"></ion-icon>
+            </div>
+          </div>
+
+          <div class="detail-card" data-category="food">
+            <img class="detail-img" src="images/spaghetti mushroom.jpg">
+            <div class="detail-desc">
+              <div class="detail-name">
+              <h4>Spaghetti Mushroom</h4>
+              <p class="detail-sub">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+              <p class="price">RM10.90</p>
+              <button class="add-to-cart-btn" onclick="addToCart('Spaghetti Mushroom', 10.90)">Add To Cart</button>
+            </div>
+              <ion-icon class="detail-favorites" name="bookmark-outline"></ion-icon>
+            </div>
+          </div>
+
+          <div class="detail-card" data-category="food">
+            <img class="detail-img" src="images/hawaii pizza.jpg">
+            <div class="detail-desc">
+              <div class="detail-name">
+              <h4>Hawaii Pizza</h4>
+              <p class="detail-sub">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+              <p class="price">RM12.90</p>
+              <button class="add-to-cart-btn" onclick="addToCart('Hawaii Pizza', 12.90)">Add To Cart</button>
+            </div>
+              <ion-icon class="detail-favorites" name="bookmark-outline"></ion-icon>
+            </div>
+          </div>
+
+          <div class="detail-card" data-category="drink">
+            <img class="detail-img" src="images/ice coffee.jpg">
+            <div class="detail-desc">
+              <div class="detail-name">
+              <h4>Ice Coffee</h4>
+              <p class="detail-sub">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+              <p class="price">RM4.50</p>
+              <button class="add-to-cart-btn" onclick="addToCart('Ice Coffee', 4.50)">Add To Cart</button>
+            </div>
+              <ion-icon class="detail-favorites" name="bookmark-outline"></ion-icon>
+            </div>
+          </div>
+
+          <div class="detail-card" data-category="drink">
+            <img class="detail-img" src="images/hot coffee.jpg">
+            <div class="detail-desc">
+              <div class="detail-name">
+              <h4>Hot Coffee</h4>
+              <p class="detail-sub">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+              <p class="price">RM3.50</p>
+              <button class="add-to-cart-btn" onclick="addToCart('Hot Coffee', 3.50)">Add To Cart</button>
+            </div>
+              <ion-icon class="detail-favorites" name="bookmark-outline"></ion-icon>
+            </div>
+          </div>
+
+          <div class="detail-card" data-category="drink">
+            <img class="detail-img" src="images/ice latte.jpg">
+            <div class="detail-desc">
+              <div class="detail-name">
+              <h4>Ice Latte</h4>
+              <p class="detail-sub">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+              <p class="price">RM5.50</p>
+              <button class="add-to-cart-btn" onclick="addToCart('Ice Latte', 5.50)">Add To Cart</button>
+            </div>
+              <ion-icon class="detail-favorites" name="bookmark-outline"></ion-icon>
+            </div>
+          </div>
+
+          <div class="detail-card" data-category="drink">
+            <img class="detail-img" src="images/hot latte.jpg">
+            <div class="detail-desc">
+              <div class="detail-name">
+              <h4>Hot Latte</h4>
+              <p class="detail-sub">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+              <p class="price">RM4.50</p>
+              <button class="add-to-cart-btn" onclick="addToCart('Hot Latte',4.50)">Add To Cart</button>
+            </div>
+              <ion-icon class="detail-favorites" name="bookmark-outline"></ion-icon>
+            </div>
+          </div>
+
+          <div class="detail-card" data-category="drink">
+            <img class="detail-img" src="images/ice cappuccino.jpg">
+            <div class="detail-desc">
+              <div class="detail-name">
+              <h4>Ice Cappuccino</h4>
+              <p class="detail-sub">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+              <p class="price">RM5.50</p>
+              <button class="add-to-cart-btn" onclick="addToCart('Ice Cappuccino',5.50)">Add To Cart</button>
+            </div>
+              <ion-icon class="detail-favorites" name="bookmark-outline"></ion-icon>
+            </div>
+          </div>
+
+          <div class="detail-card" data-category="drink">
+            <img class="detail-img" src="images/hot cappuccino.jpg">
+            <div class="detail-desc">
+              <div class="detail-name">
+              <h4>Hot Cappuccino</h4>
+              <p class="detail-sub">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+              <p class="price">RM4.50</p>
+              <button class="add-to-cart-btn" onclick="addToCart('Hot Cappuccino',4.50)">Add To Cart</button>
+            </div>
+              <ion-icon class="detail-favorites" name="bookmark-outline"></ion-icon>
+            </div>
+          </div>
+
+          <div class="detail-card" data-category="dessert">
+            <img class="detail-img" src="images/chicken popcorn.jpg">
+            <div class="detail-desc">
+              <div class="detail-name">
+              <h4>Chicken Popcorn</h4>
+              <p class="detail-sub">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+              <p class="price">RM6.50</p>
+              <button class="add-to-cart-btn" onclick="addToCart('Chicken Popcorn', 6.50)">Add To Cart</button>
+            </div>
+              <ion-icon class="detail-favorites" name="bookmark-outline"></ion-icon>
+            </div>
+          </div>
+
+          <div class="detail-card" data-category="dessert">
+            <img class="detail-img" src="images/french fries.jpg">
+            <div class="detail-desc">
+              <div class="detail-name">
+              <h4>French Fries</h4>
+              <p class="detail-sub">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+              <p class="price">RM6.50</p>
+              <button class="add-to-cart-btn" onclick="addToCart('French Fries', 6.50)">Add To Cart</button>
+            </div>
+              <ion-icon class="detail-favorites" name="bookmark-outline"></ion-icon>
+            </div>
+          </div>
+
+          <div class="detail-card" data-category="dessert">
+            <img class="detail-img" src="images/onion ring.jpg">
+            <div class="detail-desc">
+              <div class="detail-name">
+              <h4>Onion Ring</h4>
+              <p class="detail-sub">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+              <p class="price">RM6.50</p>
+              <button class="add-to-cart-btn" onclick="addToCart('Onion Ring', 6.50)">Add To Cart</button>
+            </div>
+              <ion-icon class="detail-favorites" name="bookmark-outline"></ion-icon>
+            </div>
+          </div>
+
+          <div class="detail-card" data-category="dessert">
+            <img class="detail-img" src="images/chicken wing.jpg">
+            <div class="detail-desc">
+              <div class="detail-name">
+              <h4>Chicken Wing</h4>
+              <p class="detail-sub">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+              <p class="price">RM8.90</p>
+              <button class="add-to-cart-btn" onclick="addToCart('Chicken Wing', 8.90)">Add To Cart</button>
+            </div>
+              <ion-icon class="detail-favorites" name="bookmark-outline"></ion-icon>
+            </div>
+          </div>
+
+          <div class="detail-card" data-category="drink">
+            <img class="detail-img" src="images/ice milk tea.jpg">
+            <div class="detail-desc">
+              <div class="detail-name">
+              <h4>Ice Milk Tea</h4>
+              <p class="detail-sub">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+              <p class="price">RM4.50</p>
+              <button class="add-to-cart-btn" onclick="addToCart('Ice Milk Tea', 4.50)">Add To Cart</button>
+            </div>
+              <ion-icon class="detail-favorites" name="bookmark-outline"></ion-icon>
+            </div>
+          </div>
+
+          <div class="detail-card" data-category="drink">
+            <img class="detail-img" src="images/hot milk tea.jpg">
+            <div class="detail-desc">
+              <div class="detail-name">
+              <h4>Hot Milk Tea</h4>
+              <p class="detail-sub">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+              <p class="price">RM3.50</p>
+              <button class="add-to-cart-btn" onclick="addToCart('Hot Milk Tea', 3.50)">Add To Cart</button>
+            </div>
+              <ion-icon class="detail-favorites" name="bookmark-outline"></ion-icon>
+            </div>
+          </div>
+
+          <div class="detail-card" data-category="drink">
+            <img class="detail-img" src="images/ice milo.jpg">
+            <div class="detail-desc">
+              <div class="detail-name">
+              <h4>Ice Milo</h4>
+              <p class="detail-sub">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+              <p class="price">RM5.90</p>
+              <button class="add-to-cart-btn" onclick="addToCart('Ice Milo', 5.90)">Add To Cart</button>
+            </div>
+              <ion-icon class="detail-favorites" name="bookmark-outline"></ion-icon>
+            </div>
+          </div>
+
+          <div class="detail-card" data-category="drink">
+            <img class="detail-img" src="images/hot milo.jpg">
+            <div class="detail-desc">
+              <div class="detail-name">
+              <h4>Hot Milo</h4>
+              <p class="detail-sub">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+              <p class="price">RM4.90</p>
+              <button class="add-to-cart-btn" onclick="addToCart('Hot Milo', 4.90)">Add To Cart</button>
+            </div>
+              <ion-icon class="detail-favorites" name="bookmark-outline"></ion-icon>
+            </div>
+          </div>
+
+          <div class="detail-card" data-category="drink">
+            <img class="detail-img" src="images/ice lemon tea.jpg">
+            <div class="detail-desc">
+              <div class="detail-name">
+              <h4>Ice Lemon Tea</h4>
+              <p class="detail-sub">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+              <p class="price">RM5.50</p>
+              <button class="add-to-cart-btn" onclick="addToCart('Ice Lemon Tea', 5.50)">Add To Cart</button>
+            </div>
+              <ion-icon class="detail-favorites" name="bookmark-outline"></ion-icon>
+            </div>
+          </div>
+
+          <div class="detail-card" data-category="drink">
+            <img class="detail-img" src="images/hot lemon tea.jpg">
+            <div class="detail-desc">
+              <div class="detail-name">
+              <h4>Hot Lemon Tea</h4>
+              <p class="detail-sub">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+              <p class="price">RM4.50</p>
+              <button class="add-to-cart-btn" onclick="addToCart('Hot Lemon Tea', 4.50)">Add To Cart</button>
+            </div>
+              <ion-icon class="detail-favorites" name="bookmark-outline"></ion-icon>
+            </div>
+          </div>
+
+          <div class="detail-card" data-category="food">
+            <img class="detail-img" src="images/salad.jpg">
+            <div class="detail-desc">
+              <div class="detail-name">
+              <h4>Salad</h4>
+              <p class="detail-sub">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+              <p class="price">RM7.90</p>
+              <button class="add-to-cart-btn" onclick="addToCart('Salad', 7.90)">Add To Cart</button>
+            </div>
+              <ion-icon class="detail-favorites" name="bookmark-outline"></ion-icon>
+            </div>
+          </div>
+
+          <div class="detail-card" data-category="food">
+            <img class="detail-img" src="images/steak.jpg">
+            <div class="detail-desc">
+              <div class="detail-name">
+              <h4>Steak</h4>
+              <p class="detail-sub">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+              <p class="price">RM18.90</p>
+              <button class="add-to-cart-btn" onclick="addToCart('Steak', 13.90)">Add To Cart</button>
+            </div>
+              <ion-icon class="detail-favorites" name="bookmark-outline"></ion-icon>
+            </div>
+          </div>
+
+          <div class="detail-card" data-category="food">
+            <img class="detail-img" src="images/fish and chip.jpg">
+            <div class="detail-desc">
+              <div class="detail-name">
+              <h4>Fish And Chip</h4>
+              <p class="detail-sub">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+              <p class="price">RM15.90</p>
+              <button class="add-to-cart-btn" onclick="addToCart('Fish And Chip', 15.90)">Add To Cart</button>
+            </div>
+              <ion-icon class="detail-favorites" name="bookmark-outline"></ion-icon>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="main-footer">
+  <div class="footer-container">
+    <div class="footer-section">
+      <h4>Small Cloud Restaurant</h4>
+      <p>Delicious food, delivered with care. Order now and enjoy the best meals in town.</p>
+      <div class="social-links">
+        <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer">
+          <ion-icon name="logo-facebook"></ion-icon>
+        </a>
+        <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer">
+          <ion-icon name="logo-instagram"></ion-icon>
+        </a>
+        <a href="https://x.com/" target="_blank" rel="noopener noreferrer">
+          <ion-icon name="logo-twitter"></ion-icon>
+        </a>
+        <a href="https://wa.me/60123456789" target="_blank" rel="noopener noreferrer">
+          <ion-icon name="logo-whatsapp"></ion-icon>
+        </a>
+      </div>
+    </div>
+    
+    <div class="footer-section">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="thegoldenbowl.html">Home</a></li>
+        <li><a href="#recommedations">Recommedation</a></li>
+        <li><a href="#menus">Menu</a></li>
+        <li><a href="#">About Us</a></li>
+      </ul>
+    </div>
+    
+    <div class="footer-section">
+      <h4>Contact Us</h4>
+      <ul class="contact-info">
+        <li><ion-icon name="location-outline"></ion-icon> Xiamen University Malaysia D6</li>
+        <li><ion-icon name="call-outline"></ion-icon> +60 16-9854684</li>
+        <li><ion-icon name="mail-outline"></ion-icon> smallcloud@gmail.com</li>
+        <li><ion-icon name="time-outline"></ion-icon> Mon-Sun: 9AM - 9PM</li>
+      </ul>
+    </div>
+  </div>
+  
+  <div class="footer-bottom">
+    <p>&copy; 2024 Small Cloud Restaurant. All Rights Reserved.</p>
+  </div>
+</footer>
+
+<div id="toast-notification" class="toast">
+    <ion-icon name="checkmark-circle-outline"></ion-icon>
+    <span id="toast-message">Item added to cart!</span>
+</div>
+
+</body>
+
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+
+<script src="js/thegoldenbowl js.js"></script>
+
+</html>

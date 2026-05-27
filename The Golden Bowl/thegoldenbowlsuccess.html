@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/thegoldenbowlsuccess.css">
+    <link rel="stylesheet" href="css/thegoldenbowlstyle.css">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="images/logo.jpg">
+    <title>The Golden Bowl - Order Successful</title>
+</head>
+<body class="success-page">
+
+<div class="sidebar">
+    <div class="logo-area">
+      <img src="images/logo.jpg" alt="Logo"> 
+    </div>
+</div>
+
+    <div class="main-content">
+        <div class="success-container">
+            <!-- 成功动画 -->
+            <div class="success-animation">
+                <div class="checkmark-circle">
+                    <div class="background"></div>
+                    <div class="checkmark draw"></div>
+                </div>
+            </div>
+
+            <div class="success-message">
+                <h1>Order Confirmed! 🎉</h1>
+                <p>Thank you for your order. We're preparing it right away!</p>
+            </div>
+
+            <div class="order-details-card">
+                <div class="card-header">
+                    <h2><ion-icon name="receipt-outline"></ion-icon> Order Details</h2>
+                    <span class="order-status">Processing</span>
+                </div>
+
+                <div class="order-info-grid">
+                    <div class="info-item">
+                        <label><ion-icon name="hash-outline"></ion-icon> Order Number</label>
+                        <p id="orderNumber">#ORD-000</p>
+                    </div>
+                    <div class="info-item">
+                        <label><ion-icon name="calendar-outline"></ion-icon> Date & Time</label>
+                        <p id="orderDate">-</p>
+                    </div>
+                    <div class="info-item">
+                        <label><ion-icon name="person-outline"></ion-icon> Customer</label>
+                        <p id="customerName">-</p>
+                    </div>
+                    <div class="info-item">
+                        <label><ion-icon name="wallet-outline"></ion-icon> Payment</label>
+                        <p id="paymentMethod">-</p>
+                    </div>
+                </div>
+
+                <div class="order-items-section">
+                    <h3><ion-icon name="list-outline"></ion-icon> Items Ordered</h3>
+                    <div id="orderItemsList"></div>
+                </div>
+
+                <div class="order-totals">
+                    <div class="total-row">
+                        <span>Subtotal</span>
+                        <span id="orderSubtotal">RM 0.00</span>
+                    </div>
+                    <div class="total-row">
+                        <span>Tax (6%)</span>
+                        <span id="orderTax">RM 0.00</span>
+                    </div>
+                    <div class="total-row grand-total">
+                        <span>Total</span>
+                        <span id="orderTotal">RM 0.00</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="action-buttons">
+                <button class="btn btn-primary" onclick="window.location.href='thegoldenbowl.html'">
+                    <ion-icon name="arrow-back-outline"></ion-icon> Continue Shopping
+                </button>
+                <button class="btn btn-secondary" onclick="downloadReceipt()">
+                    <ion-icon name="download-outline"></ion-icon> Download Receipt
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script src="js/thegoldenbowlsuccess.js"></script>
+</body>
+</html>

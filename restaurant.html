@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Restaurant Panel | FoodCourt Hub</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <header class="header">
+    <a href="index.html" class="logo"><i class="fas fa-utensils"></i> FoodCourt Hub</a>
+    <nav class="header-nav">
+      <a href="login/account.html" class="btn btn-primary" style="margin-left: 12px;">
+        <i class="fas fa-chart-line"></i> View Summary
+      </a>
+      <a href="index.html" class="nav-link active">Restaurant Panel</a>
+    </nav>
+  </header>
+
+  <main class="page">
+    <h1 class="page-title">Live Orders</h1>
+    <p class="page-sub">Restaurant Control Panel<br>Manage incoming orders and update their status in real time.</p>
+
+    <div class="stats-row">
+      <div class="stat-card">
+        <div class="stat-label">New Orders</div>
+        <div class="stat-value" id="count-new">0</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Preparing</div>
+        <div class="stat-value teal" id="count-preparing">0</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Ready</div>
+        <div class="stat-value orange" id="count-ready">0</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Completed Today</div>
+        <div class="stat-value" id="count-completed">0</div>
+      </div>
+    </div>
+
+    <div class="columns">
+      <div class="col">
+        <div class="col-header">
+          <span class="col-title">New Orders</span>
+          <span class="col-count status-ordered" id="badge-new">0</span>
+        </div>
+        <div class="col-body" id="col-new"></div>
+      </div>
+      <div class="col">
+        <div class="col-header">
+          <span class="col-title">Preparing</span>
+          <span class="col-count status-preparing" id="badge-preparing">0</span>
+        </div>
+        <div class="col-body" id="col-preparing"></div>
+      </div>
+      <div class="col">
+        <div class="col-header">
+          <span class="col-title">Ready for Pickup</span>
+          <span class="col-count status-ready" id="badge-ready">0</span>
+        </div>
+        <div class="col-body" id="col-ready"></div>
+      </div>
+    </div>
+  </main>
+
+  <div class="toast" id="toast">Status updated successfully!</div>
+  <script src="js/restaurant.js"></script>
+</body>
+</html>
